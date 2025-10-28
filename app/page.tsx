@@ -1,3 +1,10 @@
+import Products from "@/src/components/Products/Products";
+import { Suspense } from "react";
+
 export default function Home() {
-	return <p>Hello world</p>;
+	return (
+		<Suspense fallback={<p>Loading...</p>}>
+			<Products />
+		</Suspense>
+	);
 }
