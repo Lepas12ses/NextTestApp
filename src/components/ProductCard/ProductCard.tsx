@@ -1,5 +1,6 @@
 import Product from "@/src/schema/Product";
 import Image from "next/image";
+import Link from "next/link";
 import type { FC } from "react";
 
 interface ProductCardProps {
@@ -8,17 +9,19 @@ interface ProductCardProps {
 
 const ProductCard: FC<ProductCardProps> = ({ product }) => {
 	return (
-		<div
+		<Link
+			href={`/${product.id}`}
 			className={`bg-stone-300 w-50 flex flex-col 
                         gap-4 rounded-lg overflow-hidden`}
 		>
 			<div className='h-36 bg-stone-100 p-3 m-3 rounded-xl'>
 				<div className='relative h-full'>
 					<Image
+						className='object-contain'
 						src={product.image}
 						alt={product.title}
+						sizes='30vw'
 						fill
-						objectFit='contain'
 					/>
 				</div>
 			</div>
@@ -29,7 +32,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
 				<p className={`line-clamp-2`}>{product.title}</p>
 				<p className='font-semibold text-lg'>${product.price}</p>
 			</div>
-		</div>
+		</Link>
 	);
 };
 

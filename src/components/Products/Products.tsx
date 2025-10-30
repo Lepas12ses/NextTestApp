@@ -1,9 +1,11 @@
-import productsService from "@/src/service/ProductService";
-import type { FC } from "react";
-import ProductCard from "../ProductCard/ProductCard";
+"use client";
+import { type FC } from "react";
 
-const Products: FC = async () => {
-	const products = await productsService.getProducts();
+import ProductCard from "../ProductCard/ProductCard";
+import { useAppSelector } from "@/src/store";
+
+const Products: FC = () => {
+	const { products } = useAppSelector(state => state.products);
 
 	return (
 		<div className='flex justify-center'>
