@@ -2,6 +2,7 @@
 
 import Product from "@/src/schema/Product";
 import { makeStore } from "@/src/store";
+import { initialProducts } from "@/src/store/products";
 import type { FC, PropsWithChildren } from "react";
 import { Provider } from "react-redux";
 
@@ -14,8 +15,8 @@ const StoreProvider: FC<StoreProviderProps> = ({ children, products = [] }) => {
 		<Provider
 			store={makeStore({
 				products: {
+					...initialProducts,
 					products: products,
-					likedProductsIds: [],
 				},
 			})}
 		>

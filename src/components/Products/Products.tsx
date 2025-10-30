@@ -4,9 +4,10 @@ import { type FC } from "react";
 
 import ProductCard from "../ProductCard";
 import { useAppSelector } from "@/src/store";
+import filteredProductsSelector from "@/src/store/selectors/filtredProductsSelector";
 
 const Products: FC = () => {
-	const { products } = useAppSelector(state => state.products);
+	const products = useAppSelector(filteredProductsSelector);
 
 	return (
 		<ul className='grid grid-cols-3 w-fit gap-5'>

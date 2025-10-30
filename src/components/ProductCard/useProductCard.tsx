@@ -3,7 +3,7 @@ import { MouseEvent } from "react";
 import { useAppDispatch, useAppSelector } from "@/src/store";
 import { deleteProduct, likeProduct } from "@/src/store/products";
 
-export default function useProductCard(productId: string) {
+export default function useProductCard(productId: number) {
 	const dispatch = useAppDispatch();
 	const { likedProductsIds } = useAppSelector(state => state.products);
 

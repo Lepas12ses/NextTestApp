@@ -8,7 +8,7 @@ import trashIcon from "@/src/assets/icons/trash.svg";
 import useProductCard from "./useProductCard";
 
 interface ProductCardProps {
-	productId: string;
+	productId: number;
 	title: string;
 	price: number;
 	image: string;

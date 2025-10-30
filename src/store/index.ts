@@ -5,7 +5,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 const store = configureStore({ reducer: { products: productsReducer } });
 
 type AppStore = typeof store;
-type RootState = ReturnType<AppStore["getState"]>;
+export type RootState = ReturnType<AppStore["getState"]>;
 type AppDispatch = AppStore["dispatch"];
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
