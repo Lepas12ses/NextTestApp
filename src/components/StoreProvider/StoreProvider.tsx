@@ -1,7 +1,7 @@
 "use client";
 
 import Product from "@/src/schema/Product";
-import store, { makeStore } from "@/src/store";
+import { makeStore } from "@/src/store";
 import type { FC, PropsWithChildren } from "react";
 import { Provider } from "react-redux";
 

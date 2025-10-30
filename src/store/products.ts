@@ -16,10 +16,15 @@ const productsSlice = createSlice({
 		addProducts(state, action: PayloadAction<Product[]>) {
 			state.products.push(...action.payload);
 		},
+		deleteProduct(state, action: PayloadAction<string>) {
+			state.products = state.products.filter(
+				product => product.id != action.payload
+			);
+		},
 	},
 });
 
 const productsReducer = productsSlice.reducer;
 
-export const { addProducts } = productsSlice.actions;
+export const { addProducts, deleteProduct } = productsSlice.actions;
 export default productsReducer;
