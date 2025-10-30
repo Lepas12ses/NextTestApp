@@ -1,11 +1,11 @@
 import Product from "@/src/schema/Product";
 import Image from "next/image";
 import Link from "next/link";
-import type { FC, MouseEvent, MouseEventHandler } from "react";
+import type { FC, MouseEvent } from "react";
 
 import trashIcon from "@/src/assets/icons/trash.svg";
-import { useAppDispatch } from "@/src/store";
-import { deleteProduct } from "@/src/store/products";
+import { useAppDispatch, useAppSelector } from "@/src/store";
+import { deleteProduct, likeProduct } from "@/src/store/products";
 
 interface ProductCardProps {
 	product: Product;
@@ -13,11 +13,20 @@ interface ProductCardProps {
 
 const ProductCard: FC<ProductCardProps> = ({ product }) => {
 	const dispatch = useAppDispatch();
+	const { likedProductsIds } = useAppSelector(state => state.products);
+
+	const isLiked = likedProductsIds.indexOf(product.id) !== -1;
 
 	function handleDelete(e: MouseEvent) {
 		e.preventDefault();
 
 		dispatch(deleteProduct(product.id));
+	}
+
+	function handleLike(e: MouseEvent) {
+		e.preventDefault();
+
+		dispatch(likeProduct(product.id));
 	}
 
 	return (
@@ -44,11 +53,29 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
 				<p className={`line-clamp-2`}>{product.title}</p>
 				<p className='font-semibold text-lg'>${product.price}</p>
 			</div>
-			<div className={`flex gap-3 absolute right-1 top-1`}>
+			<div className={`flex gap-1 absolute right-1 top-1`}>
+				<button
+					onClick={handleLike}
+					className={`cursor-pointer bg-stone-50 rounded-full w-8 
+								aspect-square flex justify-center items-center 
+								border border-red-300`}
+				>
+					<svg
+						className={isLiked ? "fill-red-900" : "fill-black"}
+						width='24px'
+						height='24px'
+						viewBox='0 0 12 12'
+						xmlSpace='preserve'
+						xmlns='http://www.w3.org/2000/svg'
+						xmlnsXlink='http://www.w3.org/1999/xlink'
+					>
+						<path d='M8.5,1C7.5206299,1,6.6352539,1.4022217,6,2.0504761C5.3648071,1.4022827,4.4793701,1,3.5,1  C1.5670166,1,0,2.5670166,0,4.5S2,8,6,11c4-3,6-4.5670166,6-6.5S10.4329834,1,8.5,1z' />
+					</svg>
+				</button>
 				<button
 					onClick={handleDelete}
 					className={`cursor-pointer bg-red-100 rounded-full w-8 
-									aspect-square flex justify-center border border-red-400`}
+								aspect-square flex justify-center border border-red-400`}
 				>
 					<Image className='stroke-red-200' src={trashIcon} alt='Trash icon' />
 				</button>

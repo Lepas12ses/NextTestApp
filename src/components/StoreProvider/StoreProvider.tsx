@@ -15,6 +15,7 @@ const StoreProvider: FC<StoreProviderProps> = ({ children, products = [] }) => {
 			store={makeStore({
 				products: {
 					products: products,
+					likedProductsIds: [],
 				},
 			})}
 		>
