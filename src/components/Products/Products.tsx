@@ -1,7 +1,8 @@
 "use client";
+
 import { type FC } from "react";
 
-import ProductCard from "../ProductCard/ProductCard";
+import ProductCard from "../ProductCard";
 import { useAppSelector } from "@/src/store";
 
 const Products: FC = () => {

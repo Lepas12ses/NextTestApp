@@ -1,4 +1,4 @@
-import ProductDetails from "@/src/components/ProductDetails/ProductDetails";
+import ProductDetails from "@/src/components/ProductDetails";
 import type { FC } from "react";
 
 interface ProducDetailsPageProps {

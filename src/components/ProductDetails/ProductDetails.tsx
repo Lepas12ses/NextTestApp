@@ -1,22 +1,15 @@
 "use client";
 
-import { useAppSelector } from "@/src/store";
 import Image from "next/image";
-import { notFound } from "next/navigation";
 import type { FC } from "react";
+import useProductDetails from "./useProductDetails";
 
 interface ProductDetailsProps {
 	id: string;
 }
 
 const ProductDetails: FC<ProductDetailsProps> = ({ id }) => {
-	const product = useAppSelector(state => state.products).products.find(
-		product => {
-			return product.id == id;
-		}
-	);
-
-	if (!product) notFound();
+	const product = useProductDetails(id);
 
 	return (
 		<div className='flex flex-col items-center gap-3'>
