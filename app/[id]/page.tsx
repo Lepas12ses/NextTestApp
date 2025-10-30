@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import ProductDetails from "@/src/components/ProductDetails/ProductDetails";
 import type { FC } from "react";
 
 interface ProducDetailsPageProps {
@@ -8,9 +8,11 @@ interface ProducDetailsPageProps {
 const ProductDetailsPage: FC<ProducDetailsPageProps> = async ({ params }) => {
 	const { id } = await params;
 
-	if (!id) notFound();
-
-	return <div>{id}</div>;
+	return (
+		<main>
+			<ProductDetails id={id} />
+		</main>
+	);
 };
 
 export default ProductDetailsPage;

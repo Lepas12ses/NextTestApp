@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { memo, type FC } from "react";
+import { type FC } from "react";
 
 import trashIcon from "@/src/assets/icons/trash.svg";
 import useProductCard from "./useProductCard";
