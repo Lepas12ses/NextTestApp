@@ -12,7 +12,12 @@ const Products: FC = () => {
 			<ul className='grid grid-cols-3 w-fit gap-5'>
 				{products.map(product => (
 					<li key={product.id}>
-						<ProductCard product={product} />
+						<ProductCard
+							productId={product.id}
+							title={product.title}
+							image={product.image}
+							price={product.price}
+						/>
 					</li>
 				))}
 			</ul>

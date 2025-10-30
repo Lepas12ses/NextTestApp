@@ -1,37 +1,30 @@
-import Product from "@/src/schema/Product";
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import type { FC, MouseEvent } from "react";
+import { memo, type FC } from "react";
 
 import trashIcon from "@/src/assets/icons/trash.svg";
-import { useAppDispatch, useAppSelector } from "@/src/store";
-import { deleteProduct, likeProduct } from "@/src/store/products";
+import useProductCard from "./useProductCard";
 
 interface ProductCardProps {
-	product: Product;
+	productId: string;
+	title: string;
+	price: number;
+	image: string;
 }
 
-const ProductCard: FC<ProductCardProps> = ({ product }) => {
-	const dispatch = useAppDispatch();
-	const { likedProductsIds } = useAppSelector(state => state.products);
-
-	const isLiked = likedProductsIds.indexOf(product.id) !== -1;
-
-	function handleDelete(e: MouseEvent) {
-		e.preventDefault();
-
-		dispatch(deleteProduct(product.id));
-	}
-
-	function handleLike(e: MouseEvent) {
-		e.preventDefault();
-
-		dispatch(likeProduct(product.id));
-	}
+const ProductCard: FC<ProductCardProps> = ({
+	productId,
+	title,
+	price,
+	image,
+}) => {
+	const { isLiked, handleDelete, handleLike } = useProductCard(productId);
 
 	return (
 		<Link
-			href={`/${product.id}`}
+			href={`/${productId}`}
 			className={`bg-stone-300 w-50 flex flex-col 
                         gap-4 rounded-lg overflow-hidden relative`}
 		>
@@ -39,8 +32,8 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
 				<div className='relative h-full'>
 					<Image
 						className='object-contain'
-						src={product.image}
-						alt={product.title}
+						src={image}
+						alt={title}
 						sizes='30vw'
 						fill
 					/>
@@ -50,8 +43,8 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
 				className={`flex flex-col justify-between bg-stone-100 
                             rounded-t-lg h-30 p-2`}
 			>
-				<p className={`line-clamp-2`}>{product.title}</p>
-				<p className='font-semibold text-lg'>${product.price}</p>
+				<p className={`line-clamp-2`}>{title}</p>
+				<p className='font-semibold text-lg'>${price}</p>
 			</div>
 			<div className={`flex gap-1 absolute right-1 top-1`}>
 				<button
