@@ -5,15 +5,12 @@ import Filter from "../schema/Filter";
 interface IProductsSlice {
 	products: Product[];
 	likedProductsIds: number[];
-	filter?: Filter;
+	filter?: Filter | null;
 }
 
 export const initialProducts: IProductsSlice = {
 	products: [],
-	likedProductsIds: [1, 2],
-	filter: {
-		tags: ["liked"],
-	},
+	likedProductsIds: [],
 };
 
 const productsSlice = createSlice({
@@ -26,7 +23,13 @@ const productsSlice = createSlice({
 		deleteProduct(state, action: PayloadAction<number>) {
 			const id = action.payload;
 
-			state.products = state.products.filter(product => product.id !== id);
+			const likedIndex = state.likedProductsIds.indexOf(id);
+			if (likedIndex !== -1) state.likedProductsIds.splice(likedIndex, 1);
+
+			const productIndex = state.products.findIndex(
+				product => product.id === id
+			);
+			if (productIndex !== -1) state.products.splice(productIndex, 1);
 		},
 		likeProduct(state, action: PayloadAction<number>) {
 			const id = action.payload;
@@ -35,11 +38,14 @@ const productsSlice = createSlice({
 			if (index !== -1) state.likedProductsIds.splice(index, 1);
 			else state.likedProductsIds.push(id);
 		},
+		setFilter(state, action: PayloadAction<Filter | null>) {
+			state.filter = action.payload;
+		},
 	},
 });
 
 const productsReducer = productsSlice.reducer;
 
-export const { addProducts, deleteProduct, likeProduct } =
+export const { addProducts, deleteProduct, likeProduct, setFilter } =
 	productsSlice.actions;
 export default productsReducer;
