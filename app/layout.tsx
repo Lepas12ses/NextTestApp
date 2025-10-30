@@ -3,6 +3,7 @@ import "./globals.css";
 
 import StoreProvider from "@/src/components/StoreProvider/StoreProvider";
 import productsService from "@/src/service/ProductService";
+import Navigation from "@/src/components/Navigation/Navigation";
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -19,6 +20,9 @@ export default async function RootLayout({
 	return (
 		<html lang='en'>
 			<body>
+				<header className='bg-purple-200 flex justify-center mb-5 py-3'>
+					<Navigation />
+				</header>
 				<StoreProvider products={products}>{children}</StoreProvider>
 			</body>
 		</html>

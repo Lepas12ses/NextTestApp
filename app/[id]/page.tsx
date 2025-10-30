@@ -9,7 +9,7 @@ const ProductDetailsPage: FC<ProducDetailsPageProps> = async ({ params }) => {
 	const { id } = await params;
 
 	return (
-		<main>
+		<main className='flex justify-center'>
 			<ProductDetails id={id} />
 		</main>
 	);
