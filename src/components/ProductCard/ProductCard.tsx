@@ -6,12 +6,13 @@ import { type FC } from "react";
 
 import trashIcon from "@/src/assets/icons/trash.svg";
 import useProductCard from "./useProductCard";
+import itemPlaceholder from "@/src/assets/images/item-placeholder.png";
 
 interface ProductCardProps {
 	productId: number;
 	title: string;
 	price: number;
-	image: string;
+	image?: string;
 }
 
 const ProductCard: FC<ProductCardProps> = ({
@@ -30,13 +31,22 @@ const ProductCard: FC<ProductCardProps> = ({
 		>
 			<div className='h-36 bg-stone-100 p-3 m-3 rounded-xl'>
 				<div className='relative h-full'>
-					<Image
-						className='object-contain'
-						src={image}
-						alt={title}
-						sizes='30vw'
-						fill
-					/>
+					{image ? (
+						<Image
+							className='object-contain'
+							src={image}
+							alt={title}
+							sizes='30vw'
+							fill
+						/>
+					) : (
+						<Image
+							className='object-contain'
+							src={itemPlaceholder}
+							alt='Placeholder item'
+							fill
+						/>
+					)}
 				</div>
 			</div>
 			<div
@@ -70,7 +80,7 @@ const ProductCard: FC<ProductCardProps> = ({
 					className={`cursor-pointer bg-red-100 rounded-full w-8 
 								aspect-square flex justify-center border border-red-400`}
 				>
-					<Image className='stroke-red-200' src={trashIcon} alt='Trash icon' />
+					<Image src={trashIcon} alt='Trash icon' />
 				</button>
 			</div>
 		</Link>

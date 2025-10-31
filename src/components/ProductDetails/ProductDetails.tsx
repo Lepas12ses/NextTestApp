@@ -5,6 +5,8 @@ import type { FC } from "react";
 import useProductDetails from "./useProductDetails";
 import Link from "next/link";
 
+import itemPlaceholder from "@/src/assets/images/item-placeholder.png";
+
 interface ProductDetailsProps {
 	id: string;
 }
@@ -16,13 +18,22 @@ const ProductDetails: FC<ProductDetailsProps> = ({ id }) => {
 		<div className='flex flex-col gap-3'>
 			<div className='h-72 w-full bg-stone-100 p-3'>
 				<div className='relative h-full'>
-					<Image
-						className='object-contain'
-						src={product.image}
-						alt={product.title}
-						sizes='30vw'
-						fill
-					/>
+					{product.image ? (
+						<Image
+							className='object-contain'
+							src={product.image}
+							alt={product.title}
+							sizes='30vw'
+							fill
+						/>
+					) : (
+						<Image
+							className='object-contain'
+							src={itemPlaceholder}
+							alt='Placeholder item'
+							fill
+						/>
+					)}
 				</div>
 			</div>
 			<div className='w-130 flex flex-col gap-3'>

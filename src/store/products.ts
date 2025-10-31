@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Product from "../schema/Product";
 import Filter from "../schema/Filter";
+import NewProduct from "../schema/NewProduct";
 
 interface IProductsSlice {
 	products: Product[];
@@ -41,11 +42,28 @@ const productsSlice = createSlice({
 		setFilter(state, action: PayloadAction<Filter | null>) {
 			state.filter = action.payload;
 		},
+		createProduct(state, action: PayloadAction<NewProduct>) {
+			const { title, description, price } = action.payload;
+
+			const id = Math.max(...state.products.map(item => item.id)) + 1;
+
+			state.products.push({
+				id,
+				title,
+				description,
+				price,
+			});
+		},
 	},
 });
 
 const productsReducer = productsSlice.reducer;
 
-export const { addProducts, deleteProduct, likeProduct, setFilter } =
-	productsSlice.actions;
+export const {
+	addProducts,
+	deleteProduct,
+	likeProduct,
+	setFilter,
+	createProduct,
+} = productsSlice.actions;
 export default productsReducer;
