@@ -6,12 +6,18 @@ import NewProduct from "../schema/NewProduct";
 interface IProductsSlice {
 	products: Product[];
 	likedProductsIds: number[];
-	filter?: Filter | null;
+	filter: Filter;
+	page: number;
 }
 
 export const initialProducts: IProductsSlice = {
 	products: [],
 	likedProductsIds: [],
+	page: 1,
+	filter: {
+		tags: [],
+		search: "",
+	},
 };
 
 const productsSlice = createSlice({
@@ -39,8 +45,9 @@ const productsSlice = createSlice({
 			if (index !== -1) state.likedProductsIds.splice(index, 1);
 			else state.likedProductsIds.push(id);
 		},
-		setFilter(state, action: PayloadAction<Filter | null>) {
+		setFilter(state, action: PayloadAction<Filter>) {
 			state.filter = action.payload;
+			state.page = 1;
 		},
 		createProduct(state, action: PayloadAction<NewProduct>) {
 			const { title, description, price } = action.payload;
@@ -54,6 +61,9 @@ const productsSlice = createSlice({
 				price,
 			});
 		},
+		setPage(state, action: PayloadAction<number>) {
+			state.page = action.payload;
+		},
 	},
 });
 
@@ -65,5 +75,6 @@ export const {
 	likeProduct,
 	setFilter,
 	createProduct,
+	setPage,
 } = productsSlice.actions;
 export default productsReducer;
