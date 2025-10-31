@@ -5,6 +5,12 @@ interface ProducDetailsPageProps {
 	params: Promise<{ id: number }>;
 }
 
+export async function generateStaticParams() {
+	return new Array(100).fill(1).map((_, index) => ({
+		id: `${index + 1}`,
+	}));
+}
+
 const ProductDetailsPage: FC<ProducDetailsPageProps> = async ({ params }) => {
 	const { id } = await params;
 
