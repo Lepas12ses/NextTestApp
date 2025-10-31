@@ -45,5 +45,6 @@ export default function useProductFilters() {
 		handleFavorite,
 		handleSearch: debouncedSearch,
 		isFavoriteOnly,
+		search: filter.search,
 	};
 }

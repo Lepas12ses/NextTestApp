@@ -44,6 +44,7 @@ const ProductCard: FC<ProductCardProps> = ({
 							className='object-contain'
 							src={itemPlaceholder}
 							alt='Placeholder item'
+							sizes='30vw'
 							fill
 						/>
 					)}

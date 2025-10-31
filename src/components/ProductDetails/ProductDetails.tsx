@@ -8,7 +8,7 @@ import Link from "next/link";
 import itemPlaceholder from "@/src/assets/images/item-placeholder.png";
 
 interface ProductDetailsProps {
-	id: string;
+	id: number;
 }
 
 const ProductDetails: FC<ProductDetailsProps> = ({ id }) => {
@@ -31,6 +31,7 @@ const ProductDetails: FC<ProductDetailsProps> = ({ id }) => {
 							className='object-contain'
 							src={itemPlaceholder}
 							alt='Placeholder item'
+							sizes='30vw'
 							fill
 						/>
 					)}

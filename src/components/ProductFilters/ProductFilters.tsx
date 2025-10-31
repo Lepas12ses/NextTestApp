@@ -4,11 +4,17 @@ import type { FC } from "react";
 import useProductFilters from "./useProductFilters";
 
 const ProductFilters: FC = () => {
-	const { handleFavorite, handleSearch, isFavoriteOnly } = useProductFilters();
+	const { handleFavorite, handleSearch, isFavoriteOnly, search } =
+		useProductFilters();
 
 	return (
-		<div className='flex py-4 px-2 bg-stone-200 rounded-xl'>
-			<input onChange={handleSearch} placeholder='Поиск' />
+		<div className='flex gap-2 py-4 px-2 bg-stone-200 rounded-xl'>
+			<input
+				className='rounded-full bg-stone-50 px-3'
+				onChange={handleSearch}
+				placeholder='Поиск'
+				defaultValue={search}
+			/>
 			<button
 				onClick={handleFavorite}
 				className={`py-1 px-2 rounded-full bg-stone-300 
