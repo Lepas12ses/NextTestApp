@@ -2,7 +2,7 @@ import ProductDetails from "@/src/components/ProductDetails";
 import type { FC } from "react";
 
 interface ProducDetailsPageProps {
-	params: Promise<{ id: string }>;
+	params: Promise<{ id: number }>;
 }
 
 const ProductDetailsPage: FC<ProducDetailsPageProps> = async ({ params }) => {
