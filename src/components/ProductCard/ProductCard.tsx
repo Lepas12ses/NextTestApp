@@ -25,7 +25,7 @@ const ProductCard: FC<ProductCardProps> = ({
 
 	return (
 		<Link
-			href={`/products/${productId}`}
+			href={`/${productId}`}
 			className={`bg-stone-300 w-50 flex flex-col 
                         gap-4 rounded-lg overflow-hidden relative`}
 		>

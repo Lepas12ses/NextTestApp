@@ -1,11 +1,12 @@
 {
 	"name": "next-test-app",
+	"homepage": "https://lepas12ses.github.io/NextTestApp/",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
 		"dev": "next dev -H localhost",
 		"build": "next build",
-		"start": "next start",
+		"start": "next start -H localhost",
 		"lint": "eslint"
 	},
 	"dependencies": {

@@ -22,7 +22,7 @@ const ProductForm: FC = () => {
 				price: +data.price,
 			})
 		);
-		redirect("/products");
+		redirect("/");
 	}
 
 	return (
